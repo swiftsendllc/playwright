@@ -3,17 +3,17 @@ FROM mcr.microsoft.com/playwright:v1.55.0-noble
 # Set working directory
 WORKDIR /home/pwuser
 
-# Install playwright globally
+# Install playwright globally as root
 RUN npm install -g playwright@1.55.0
 
-# Ensure correct ownership
+# Ensure pwuser owns its home directory
 RUN chown -R pwuser:pwuser /home/pwuser
 
-# Switch to non-root user
+# Switch to pwuser
 USER pwuser
 
-# Expose a port (Heroku ignores this, but good for local testing)
+# Expose the port
 EXPOSE 3003
 
-# Run server using Heroku's $PORT variable
-CMD ["playwright", "run-server", "--port", "$PORT", "--host", "0.0.0.0"]
+# Default command (no npx needed anymore)
+CMD ["playwright", "run-server", "--port", "3003", "--host", "0.0.0.0"]
