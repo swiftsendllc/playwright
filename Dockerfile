@@ -4,7 +4,7 @@ FROM mcr.microsoft.com/playwright:v1.55.0-noble
 WORKDIR /home/pwuser
 
 # Install playwright globally as root
-RUN npm install -g playwright@1.55.0
+RUN npm install -g playwright@1.56.0
 
 # Ensure pwuser owns its home directory
 RUN chown -R pwuser:pwuser /home/pwuser
